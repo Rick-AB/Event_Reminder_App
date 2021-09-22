@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.EventActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/event_frag_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/event_details_constraint_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/curved_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/label_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Add Event"
+                android:fontFamily="@font/cantata_one"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="30dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/label_tv" />
+
+            <EditText
+                android:id="@+id/event_title_et"
+                style="@style/event_details_background"
+                android:layout_width="0dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="40dp"
+                android:ems="10"
+                android:fontFamily="@font/cantata_one"
+                android:inputType="textPersonName|textCapSentences"
+                android:paddingStart="20dp"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_label_tv" />
+
+            <TextView
+                android:id="@+id/title_label_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Event Title"
+                android:fontFamily="@font/cantata_one"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/event_title_et"
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+            <TextView
+                android:id="@+id/day_label_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Event Day"
+                android:fontFamily="@font/cantata_one"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/event_title_et"
+                app:layout_constraintTop_toBottomOf="@+id/event_title_et" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/event_year_et"
+                style="@style/event_details_background"
+                android:layout_width="0dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                app:layout_constraintEnd_toEndOf="@+id/event_title_et"
+                app:layout_constraintStart_toStartOf="@+id/event_title_et"
+                app:layout_constraintTop_toBottomOf="@+id/day_label_tv">
+
+                <ImageButton
+                    android:id="@+id/prev_year_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_left"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/set_event_year_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cantata_one"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/next_year_img_btn"
+                    app:layout_constraintStart_toEndOf="@+id/prev_year_img_btn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="2020" />
+
+                <ImageButton
+                    android:id="@+id/next_year_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/event_month_et"
+                style="@style/event_details_background"
+                android:layout_width="0dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/event_year_et"
+                app:layout_constraintStart_toStartOf="@+id/event_year_et"
+                app:layout_constraintTop_toBottomOf="@+id/event_year_et">
+
+                <ImageButton
+                    android:id="@+id/prev_month_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_left"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/set_event_month_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cantata_one"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/next_month_img_btn"
+                    app:layout_constraintStart_toEndOf="@+id/prev_month_img_btn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="May" />
+
+                <ImageButton
+                    android:id="@+id/next_month_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/event_day_et"
+                style="@style/event_details_background"
+                android:layout_width="0dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/event_month_et"
+                app:layout_constraintStart_toStartOf="@+id/event_month_et"
+                app:layout_constraintTop_toBottomOf="@+id/event_month_et">
+
+                <ImageButton
+                    android:id="@+id/prev_day_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_left"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/set_event_day_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cantata_one"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/next_day_img_btn"
+                    app:layout_constraintStart_toEndOf="@+id/prev_day_img_btn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="20" />
+
+                <ImageButton
+                    android:id="@+id/next_day_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/event_save_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_background"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/secondary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cantata_one"
+                app:backgroundTint="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/event_day_et"
+                app:layout_constraintStart_toStartOf="@+id/event_day_et"
+                app:layout_constraintTop_toBottomOf="@+id/event_day_et"
+                app:layout_constraintVertical_bias="0.3" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+
+        <ImageButton
+            android:id="@+id/cancel_event_image_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/ic_outline_cancel_24"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.833" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

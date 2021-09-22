@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".screens.NotificationsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/notifications_frag_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/curved_background"
+            android:paddingHorizontal="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline6"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Notifications"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cantata_one"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="30dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView" />
+
+            <Switch
+                android:id="@+id/notification_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Get a notification for this event"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cantata_one"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notification_switch" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/notification_range_et"
+                style="@style/event_details_background"
+                android:layout_width="0dp"
+                android:ems="10"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                <ImageButton
+                    android:id="@+id/prev_range_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_left"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/notification_range_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@drawable/text_colors"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cantata_one"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/next_range_img_btn"
+                    app:layout_constraintStart_toEndOf="@+id/prev_range_img_btn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Every Week" />
+
+                <ImageButton
+                    android:id="@+id/next_range_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/notification_weekday_et"
+                style="@style/event_details_background"
+                android:layout_width="0dp"
+                android:ems="10"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notification_range_et">
+
+                <ImageButton
+                    android:id="@+id/prev_weekday_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_left"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/notification_weekday_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@drawable/text_colors"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cantata_one"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/next_weekday_img_btn"
+                    app:layout_constraintStart_toEndOf="@+id/prev_weekday_img_btn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Monday" />
+
+                <ImageButton
+                    android:id="@+id/next_weekday_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/notification_day_et"
+                style="@style/event_details_background"
+                android:layout_width="0dp"
+                android:ems="10"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notification_weekday_et">
+
+                <ImageButton
+                    android:id="@+id/prev_day_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_left"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/notification_day_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@drawable/text_colors"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/cantata_one"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/next_day_img_btn"
+                    app:layout_constraintStart_toEndOf="@+id/prev_day_img_btn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="01" />
+
+                <ImageButton
+                    android:id="@+id/next_day_img_btn"
+                    android:layout_width="49dp"
+                    android:layout_height="49dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/transparent_circle_background"
+                    android:src="@drawable/ic_baseline_chevron_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/notification_save_btn"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_background"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textColor="@color/secondary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/cantata_one"
+                app:backgroundTint="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/notification_day_et"
+                app:layout_constraintVertical_bias="0.3" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/cancel_notification_image_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/ic_outline_cancel_24"
+            app:layout_constraintBottom_toTopOf="@+id/guideline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.833" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
