@@ -94,6 +94,7 @@ class EventActivity : AppCompatActivity(), View.OnClickListener {
         binding.prevDayImgBtn.setOnClickListener { v -> onClick(v) }
         binding.prevMonthImgBtn.setOnClickListener { v -> onClick(v) }
         binding.prevYearImgBtn.setOnClickListener { v -> onClick(v) }
+        binding.cancelEventImageBtn.setOnClickListener { finish() }
     }
 
     private fun onSaveClick() {

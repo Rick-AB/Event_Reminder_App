@@ -61,6 +61,7 @@ class NotificationsActivity : AppCompatActivity() {
         binding.nextWeekdayImgBtn.setOnClickListener { increaseWeekday() }
         binding.prevDayImgBtn.setOnClickListener { decreaseDay() }
         binding.nextDayImgBtn.setOnClickListener { increaseDay() }
+        binding.cancelNotificationImageBtn.setOnClickListener { finish() }
     }
 
     private fun decreaseRange() {
