@@ -12,6 +12,7 @@ import com.example.eventreminder.utils.Constants
 import com.example.eventreminder.workmanager.NotificationWorker
 import java.time.Duration
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -28,6 +29,11 @@ class NotificationsActivity : AppCompatActivity() {
     private var rangesIndex = 0
     private var weekDayIndex = 0
     private var daysIndex = 0
+    private var today = LocalDateTime.now()
+    private var currentDay = today.dayOfMonth
+    private val currentWeekday = today.dayOfWeek
+    private val currentMonth = today.month
+    private val currentYear = today.year
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +54,14 @@ class NotificationsActivity : AppCompatActivity() {
     }
 
     private fun setDefaultValues() {
+        // Log.d("TAG", "setDefaultValues: ${currentWeekday.name.lowercase().replaceFirstChar { it.uppercase() } }")
+        val currentDayString: String = if (currentDay.toString().length == 1) {
+            "0$currentDay"
+        } else currentDay.toString()
+        daysIndex = days.indexOf(currentDayString)
+        weekDayIndex =
+            weekDays.indexOf(currentWeekday.name.lowercase().replaceFirstChar { it.uppercase() })
+
         binding.notificationDayTv.text = days[daysIndex]
         binding.notificationWeekdayTv.text = weekDays[weekDayIndex]
         binding.notificationRangeTv.text = ranges[rangesIndex]
@@ -57,10 +71,10 @@ class NotificationsActivity : AppCompatActivity() {
         binding.notificationSaveBtn.setOnClickListener { saveButtonClick() }
         binding.prevRangeImgBtn.setOnClickListener { decreaseRange() }
         binding.nextRangeImgBtn.setOnClickListener { increaseRange() }
-        binding.prevWeekdayImgBtn.setOnClickListener { decreaseWeekday() }
-        binding.nextWeekdayImgBtn.setOnClickListener { increaseWeekday() }
-        binding.prevDayImgBtn.setOnClickListener { decreaseDay() }
-        binding.nextDayImgBtn.setOnClickListener { increaseDay() }
+        binding.prevWeekdayImgBtn.setOnClickListener { decreaseDayNWeekday() }
+        binding.nextWeekdayImgBtn.setOnClickListener { increaseDayNWeekday() }
+        binding.prevDayImgBtn.setOnClickListener { decreaseDayNWeekday() }
+        binding.nextDayImgBtn.setOnClickListener { increaseDayNWeekday() }
         binding.cancelNotificationImageBtn.setOnClickListener { finish() }
     }
 
@@ -135,6 +149,44 @@ class NotificationsActivity : AppCompatActivity() {
                 daysIndex++
             }
             binding.notificationDayTv.text = days[daysIndex]
+        }
+    }
+
+    private fun increaseDayNWeekday() {
+        if (rangesIndex == 0 && daysIndex != (currentMonth.length(LocalDate.now().isLeapYear) - 1)) {
+            if (weekDayIndex == weekDays.size - 1) {
+                weekDayIndex = 0
+            } else {
+                weekDayIndex++
+            }
+
+            if (daysIndex == days.size - 1) {
+                daysIndex = 0
+            } else {
+                daysIndex++
+            }
+
+            binding.notificationDayTv.text = days[daysIndex]
+            binding.notificationWeekdayTv.text = weekDays[weekDayIndex]
+        }
+    }
+
+    private fun decreaseDayNWeekday() {
+        if (rangesIndex == 0 && daysIndex != 0) {
+            if (daysIndex == 0) {
+                daysIndex = days.size - 1
+            } else {
+                daysIndex--
+            }
+
+            if (weekDayIndex == 0) {
+                weekDayIndex = weekDays.size - 1
+            } else {
+                weekDayIndex--
+            }
+
+            binding.notificationDayTv.text = days[daysIndex]
+            binding.notificationWeekdayTv.text = weekDays[weekDayIndex]
         }
     }
 
@@ -245,14 +297,11 @@ class NotificationsActivity : AppCompatActivity() {
     }
 
     private fun getInitialDelayForOneTimeWork(): Long {
-        val currentYear = LocalDate.now().year
-        val currentMonth = LocalDate.now().month
-        val currentDay = binding.notificationDayTv.text.toString()
+        val selectedDay = binding.notificationDayTv.text.toString()
 
-        val dateString = "$currentDay-$currentMonth-$currentYear"
+        val dateString = "$selectedDay-$currentMonth-$currentYear"
         val formattedDate = LocalDate.parse(dateString, formatter)
-        val diff = Duration.between(LocalDate.now().atStartOfDay(), formattedDate.atStartOfDay())
-            .plusHours(12)
+        val diff = Duration.between(today, formattedDate.atStartOfDay().plusHours(12))
 
         return diff.toHours()
     }
@@ -261,15 +310,13 @@ class NotificationsActivity : AppCompatActivity() {
         var initialDelay: Long = 0
         if (rangesIndex == 1) {
             val tomorrow = LocalDate.now().plusDays(1)
-            val today = LocalDate.now()
-            val diff = Duration.between(today.atStartOfDay(), tomorrow.atStartOfDay()).plusHours(12)
+            val diff = Duration.between(today, tomorrow.atStartOfDay().plusHours(12))
 
             initialDelay = diff.toHours()
         } else if (rangesIndex == 2) {
             val oneWeekFromNow = LocalDate.now().plusDays(7)
-            val today = LocalDate.now()
             val diff =
-                Duration.between(today.atStartOfDay(), oneWeekFromNow.atStartOfDay()).plusHours(12)
+                Duration.between(today, oneWeekFromNow.atStartOfDay().plusHours(12))
 
             initialDelay = diff.toHours()
         }
@@ -284,10 +331,8 @@ class NotificationsActivity : AppCompatActivity() {
 
         when (rangesIndex) {
             0 -> {
-                val year = LocalDate.now().year
-                val month = LocalDate.now().month
                 val day = binding.notificationDayTv.text.toString()
-                val dateString = "$day-$month-$year"
+                val dateString = "$day-$currentMonth-$currentYear"
                 val formattedDate = LocalDate.parse(dateString, formatter)
 
                 val diff = Duration.between(
@@ -337,5 +382,10 @@ class NotificationsActivity : AppCompatActivity() {
 
         WorkManager.getInstance(this).enqueue(request)
         finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        today = LocalDateTime.now()
     }
 }

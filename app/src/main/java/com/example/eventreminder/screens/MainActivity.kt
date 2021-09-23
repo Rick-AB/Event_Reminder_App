@@ -54,8 +54,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun deleteExpiredEvents() {
+        CoroutineScope(Dispatchers.IO).launch {
+            db.eventDao().deleteExpiredEvents()
+        }
+    }
+
     override fun onResume() {
         super.onResume()
+        deleteExpiredEvents()
         getAllEvents()
     }
+
 }

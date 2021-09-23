@@ -5,7 +5,7 @@ import com.example.eventreminder.model.Event
 
 @Dao
 interface DAO {
-    @Query("SELECT * FROM event")
+    @Query("SELECT * FROM event WHERE CAST(Event_Date AS DATE) <= CAST(datetime('now') AS DATE)")
     fun getAllEvents(): List<Event>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -16,4 +16,7 @@ interface DAO {
 
     @Delete
     suspend fun deleteEvent(event: Event)
+
+    @Query("DELETE FROM event WHERE CAST(Event_Date AS DATE) > CAST(datetime('now') AS DATE)")
+    suspend fun deleteExpiredEvents()
 }
