@@ -1,6 +1,9 @@
 package com.example.eventreminder.screens
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -25,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         db = EventDatabase.getInstance(this)
+        getAllEvents()
 
         val pagerAdapter = ViewPagerAdapter(supportFragmentManager)
         binding.mainActivityViewpager.adapter = pagerAdapter
@@ -36,8 +40,46 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 events = temp
                 binding.mainActivityViewpager.adapter?.notifyDataSetChanged()
+                if (events.isEmpty()) {
+                    Log.d(TAG, "getAllEvents: showStuffffffffff")
+                    showNoEventView()
+                } else {
+                    hideNoEventView()
+                }
             }
         }
+    }
+
+    fun addEvent(view: View) {
+        startActivity(Intent(this, EventActivity::class.java))
+    }
+
+    private fun showNoEventView() {
+        binding.floatingActionButton.visibility = View.VISIBLE
+        binding.guideline7.visibility = View.VISIBLE
+        binding.noEventAddTv.visibility = View.VISIBLE
+        binding.noEventTv.visibility = View.VISIBLE
+        binding.mainActivityViewpager.visibility = View.GONE
+    }
+
+    private fun hideNoEventView() {
+        binding.floatingActionButton.visibility = View.GONE
+        binding.guideline7.visibility = View.GONE
+        binding.noEventAddTv.visibility = View.GONE
+        binding.noEventTv.visibility = View.GONE
+        binding.mainActivityViewpager.visibility = View.VISIBLE
+    }
+
+    private fun deleteExpiredEvents() {
+        CoroutineScope(Dispatchers.IO).launch {
+            db.eventDao().deleteExpiredEvents()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        deleteExpiredEvents()
+        getAllEvents()
     }
 
     private inner class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
@@ -53,17 +95,4 @@ class MainActivity : AppCompatActivity() {
             return POSITION_NONE
         }
     }
-
-    private fun deleteExpiredEvents() {
-        CoroutineScope(Dispatchers.IO).launch {
-            db.eventDao().deleteExpiredEvents()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        deleteExpiredEvents()
-        getAllEvents()
-    }
-
 }

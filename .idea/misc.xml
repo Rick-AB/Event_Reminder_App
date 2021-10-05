@@ -19,10 +19,13 @@
         <entry key="..\:/Users/Rick/StudioProjects/Kotlin/app/src/main/res/drawable/transparent_circle_background.xml" value="0.240625" />
         <entry key="..\:/Users/Rick/StudioProjects/Kotlin/app/src/main/res/drawable/transparent_cirlce_background.xml" value="0.240625" />
         <entry key="..\:/Users/Rick/StudioProjects/Kotlin/app/src/main/res/layout/activity_event.xml" value="0.17481884057971014" />
+        <entry key="..\:/Users/Rick/StudioProjects/Kotlin/app/src/main/res/layout/activity_main.xml" value="0.17617753623188406" />
         <entry key="..\:/Users/Rick/StudioProjects/Kotlin/app/src/main/res/layout/activity_notifications.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Rick/StudioProjects/Kotlin/app/src/main/res/layout/activity_splash_screen.xml" value="0.21195652173913043" />
         <entry key="..\:/Users/Rick/StudioProjects/Kotlin/app/src/main/res/layout/fragment_event.xml" value="0.20425724637681159" />
         <entry key="..\:/Users/Rick/StudioProjects/Kotlin/app/src/main/res/layout/fragment_home.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Rick/StudioProjects/Kotlin/app/src/main/res/layout/fragment_notifications.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Rick/StudioProjects/Kotlin/app/src/main/res/layout/no_event_fragment.xml" value="0.21875" />
       </map>
     </option>
   </component>

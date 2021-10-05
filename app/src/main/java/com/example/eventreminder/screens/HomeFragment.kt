@@ -87,5 +87,10 @@ class HomeFragment : Fragment() {
         binding.eventDateTv.text = event.date.replace("-", ".")
     }
 
+    override fun onResume() {
+        super.onResume()
+        updateData()
+    }
+
 
 }
